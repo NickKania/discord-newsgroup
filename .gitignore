@@ -191,4 +191,4 @@ dmypy.json
 *.xhtml
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,sublime,python,sqlite,web
-n
+.vscode/
