@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from json import JSONEncoder
 
 class Article():
 	"""docstring for article"""
@@ -18,3 +18,11 @@ class Article():
 
 	def __str__(self):
 		return "Title: %s\nID: %s\nAuthor: %s\nDate Posted: %s" % (self.title, self.article_id, self.author, self.date_posted)
+
+	def to_dict(self):
+		return  {
+			"title": self.title,
+			"article_id": self.article_id,
+			"author": self.author,
+			"date_posted": self.date_posted
+		}
