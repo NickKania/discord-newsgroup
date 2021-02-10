@@ -17,7 +17,4 @@ def get_posts(from_users):
         post_id = id_pattern.search(row.find_all(href=True)[0]['href']).group(1)
         if 'Re: ' not in data[1]:
             articles.append(Article( article_id=post_id, title=data[1], author=data[3], date_posted=data[0]))
-    tst = list(filter(lambda a: a.author in from_users, articles))
-    return tst
-
-get_posts(['Sudarshan S Chawathe'])
+    return list(filter(lambda a: a.author in from_users, articles))

@@ -2,6 +2,7 @@ import discord
 import os
 from dotenv import load_dotenv
 from newsgroup import get_posts
+import asyncio
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -18,8 +19,11 @@ async def on_ready():
 async def send_chaw_posts():
     await client.wait_until_ready()
     channel = client.get_channel(805918787822944297)
-    posts = get_posts(['Sudarshan S Chawathe'])
-    await channel.send(posts[0].title)
+    while True:
+        posts = get_posts(['Sudarshan S Chawathe'])
+        for post in posts:
+            await channel.send(post.title)
+        await asyncio.sleep(1)
 
 
 client.loop.create_task(send_chaw_posts())
