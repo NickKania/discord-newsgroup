@@ -1,25 +1,39 @@
 import discord
 import os
 from dotenv import load_dotenv
-from newsgroup import get_posts
+from newsgroup import recent_posts
+import asyncio
+from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 guild = None
 client = discord.Client()
+# bot = commands.Bot(command_prefix='?')
 
 @client.event
 async def on_ready():
     guild = discord.utils.get(client.guilds, name=GUILD)
-    print(f'{client.user} is connected to the following guild: {guild.name}')
 
-
+@client.event
+async def on_message(message):
+    channel = client.get_channel(805918787822944297)
+    if 'purge' in message.content:
+        await channel.purge()
+    
 async def send_chaw_posts():
     await client.wait_until_ready()
     channel = client.get_channel(805918787822944297)
-    posts = get_posts(['Sudarshan S Chawathe'])
-    await channel.send(posts[0].title)
+    while True:
+        recents = recent_posts(['Mark Royer', 'Sudarshan S Chawathe'])
+        if recents:
+            print('Found %d new posts, sending to channel' % len(recents))
+        else:
+            print('No new posts found')
+        for r in recents:
+            await channel.send(r)
+        await asyncio.sleep(100)
 
 
 client.loop.create_task(send_chaw_posts())

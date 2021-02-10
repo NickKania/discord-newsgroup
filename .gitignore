@@ -1,4 +1,6 @@
 out.html
+.idea/
+*.p
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,sublime,python,sqlite,web
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,sublime,python,sqlite,web
