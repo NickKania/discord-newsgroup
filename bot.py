@@ -16,6 +16,12 @@ client = discord.Client()
 async def on_ready():
     guild = discord.utils.get(client.guilds, name=GUILD)
 
+@client.event
+async def on_message(message):
+    channel = client.get_channel(CHANNEL_ID)
+    if 'purge' in message.content:
+        await channel.purge()
+
 async def send_chaw_posts():
     await client.wait_until_ready()
     channel = client.get_channel(CHANNEL_ID)

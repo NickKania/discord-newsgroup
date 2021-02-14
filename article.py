@@ -1,11 +1,11 @@
 from datetime import datetime
 from json import JSONEncoder
 
-Base = declarative_base()
 
-class Article(Base):
 class Article():
-	"""docstring for article"""
+	"""
+    Object to hold information for each post made
+    """
 	def __init__(self, article_id, title, author, date_posted):
 		self.title = title
 		self.article_id = article_id
