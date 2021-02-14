@@ -10,7 +10,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 guild = None
 client = discord.Client()
-# bot = commands.Bot(command_prefix='?')
 
 @client.event
 async def on_ready():
@@ -26,14 +25,14 @@ async def send_chaw_posts():
     await client.wait_until_ready()
     channel = client.get_channel(805918787822944297)
     while True:
-        recents = recent_posts(['Mark Royer', 'Sudarshan S Chawathe'])
+        recents = recent_posts(['Sudarshan S Chawathe'])
         if recents:
             print('Found %d new posts, sending to channel' % len(recents))
         else:
             print('No new posts found')
         for r in recents:
             await channel.send(r)
-        await asyncio.sleep(100)
+        await asyncio.sleep(1800)
 
 
 client.loop.create_task(send_chaw_posts())
