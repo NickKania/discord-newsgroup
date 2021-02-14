@@ -8,7 +8,7 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
+CHANNEL_ID = int(os.getenv('DISCORD_CHANNEL_ID'))
 guild = None
 client = discord.Client()
 
