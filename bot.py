@@ -8,6 +8,7 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
 guild = None
 client = discord.Client()
 
@@ -17,7 +18,7 @@ async def on_ready():
 
 async def send_chaw_posts():
     await client.wait_until_ready()
-    channel = client.get_channel(805918787822944297)
+    channel = client.get_channel(CHANNEL_ID)
     while True:
         recents = recent_posts(['Sudarshan S Chawathe'])
         if recents:
