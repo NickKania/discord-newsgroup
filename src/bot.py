@@ -32,7 +32,9 @@ async def send_chaw_posts():
         else:
             print('No new posts found')
         for r in recents:
-            await channel.send(r)
+            embed = discord.Embed(title=r.title, url=r.post_url, description=str(r.date_posted))
+            embed.set_author(name=r.author)
+            await channel.send(embed=embed) 
         await asyncio.sleep(1800)
 
 
