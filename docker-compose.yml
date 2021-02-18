@@ -2,5 +2,8 @@ version: "3.3"
 services:
   chaw:
     build: .
+    restart: always
     env_file:
       - .env
+    volumes:
+      - /home/qsevers/repos/discord-newsgroup/seen.p:/tmp/dev/seen.p
