@@ -1,5 +1,7 @@
 from datetime import datetime
+import os
 
+username, password = (os.getenv('NEWSGROUP_USR'), os.getenv('NEWSGROUP_PASS'))
 
 class Article():
     """
@@ -12,7 +14,7 @@ class Article():
         self.author = author
         self.responses = list()
         self.date_posted = datetime.strptime(date_posted, "%Y-%m-%d").date()
-        self.post_url = 'http://creak.um.maine.edu/news/article.php?id=%s&group=umaine.cos451' % self.article_id
+        self.post_url = f'http://{username}:{password}creak.um.maine.edu/news/article.php?id={self.article_id}&group=umaine.cos451'
 
     def __str__(self):
         return "Title: [%s](%s)\nAuthor: %s\nDate Posted: %s" % (
